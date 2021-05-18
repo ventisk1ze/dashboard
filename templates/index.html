@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="display:grid; grid-template-columns: 2fr 2fr; grid-gap: 15px;">
+<h1>Задолженности</h1>
+
+<h2>Загрузить новый файл</h2>
+<table border="1">
+    <tr>
+        <th>Дата</th>
+        <th>Сумма</th>
+        <th>Работник</th>
+    </tr>
+    {% for entry in entries %}
+        <tr>
+            <td>{{ entry.date.date() }}</td>
+            <td>{{ entry.amount }}</td>
+            <td>{{ entry.employee }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+    <form method=post enctype=multipart/form-data>
+      <input type=file name=file>
+      <input type=submit value=Upload>
+    </form>
+<h3>{{ ds }}</h3>
+<h4>{{ od }}</h4>
+</div>
+{% endblock %}
